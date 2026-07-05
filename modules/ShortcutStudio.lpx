@@ -1,0 +1,29 @@
+#!name=Shortcut
+#!desc=修改 ShortcutStudio generate 请求模型参数与设备安装 ID
+#!author=ios151
+#!homepage=https://github.com/Yu9191/shortcutstudio-rewrite
+#!icon=https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png
+#!category=快捷指令
+
+[Argument]
+thinkingMode = select,"auto","on","off",tag=思考模式,desc=思考模式: auto/on/off
+searchWebMode = select,"on","auto","off",tag=搜索模式,desc=搜索模式: auto/on/off (默认 on)
+deviceIdReuseLimit = input,2,tag=设备ID复用次数,desc=默认2次后切换
+signRewrite = select,"off","on",tag=sign接口替换,desc=off=不替换/sign设备ID，减少对签名/隐私敏感请求影响; on=对/sign也替换设备ID
+limitsMock = select,"off","on",tag=limits响应mock,desc=off=不修改/users/me/limits响应; on=仅修改本机App看到的UI显示额度，不改变服务端真实额度
+messagesLimit = input,999,tag=消息额度,desc=limits响应mock=on时生效
+downloadsLimit = input,999,tag=下载额度,desc=limits响应mock=on时生效
+searchesLimit = input,999,tag=搜索额度,desc=limits响应mock=on时生效
+uploadsLimit = input,999,tag=上传额度,desc=limits响应mock=on时生效
+marketplaceDownloadsLimit = input,999,tag=市场下载额度,desc=limits响应mock=on时生效
+chatInputCharsLimit = input,20000,tag=输入字数,desc=limits响应mock=on时生效
+logLevel = select,"info","off","error","warn","debug","all",tag=日志级别,desc=off/error/warn/info/debug/all
+
+[Script]
+http-request ^https:\/\/api\.shortcutstudio\.app\/generate(?:[/?#]|$) script-path=https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/request.js, tag=ShortcutStudio Generate, requires-body=true, max-size=0, timeout=30, argument="thinkingMode=[{thinkingMode}]&searchWebMode=[{searchWebMode}]&deviceIdReuseLimit=[{deviceIdReuseLimit}]&signRewrite=[{signRewrite}]&logLevel=[{logLevel}]", enable=true
+http-request ^https:\/\/api\.shortcutstudio\.app\/users\/me\/limits(?:[/?#]|$) script-path=https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/request.js, tag=ShortcutStudio Limits, requires-body=false, max-size=0, timeout=30, argument="thinkingMode=[{thinkingMode}]&searchWebMode=[{searchWebMode}]&deviceIdReuseLimit=[{deviceIdReuseLimit}]&signRewrite=[{signRewrite}]&logLevel=[{logLevel}]", enable=true
+http-request ^https:\/\/api\.shortcutstudio\.app\/sign(?:[/?#]|$) script-path=https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/request.js, tag=ShortcutStudio Sign, requires-body=false, max-size=0, timeout=30, argument="thinkingMode=[{thinkingMode}]&searchWebMode=[{searchWebMode}]&deviceIdReuseLimit=[{deviceIdReuseLimit}]&signRewrite=[{signRewrite}]&logLevel=[{logLevel}]", enable=true
+http-response ^https:\/\/api\.shortcutstudio\.app\/users\/me\/limits(?:[/?#]|$) script-path=https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/response.js, tag=ShortcutStudio Limits Mock, requires-body=true, max-size=0, timeout=30, argument="limitsMock=[{limitsMock}]&messagesLimit=[{messagesLimit}]&downloadsLimit=[{downloadsLimit}]&searchesLimit=[{searchesLimit}]&uploadsLimit=[{uploadsLimit}]&marketplaceDownloadsLimit=[{marketplaceDownloadsLimit}]&chatInputCharsLimit=[{chatInputCharsLimit}]&logLevel=[{logLevel}]", enable=true
+
+[MITM]
+hostname = api.shortcutstudio.app

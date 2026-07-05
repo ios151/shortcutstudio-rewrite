@@ -1,0 +1,173 @@
+{
+  "id": "shortcutstudio.boxjs",
+  "name": "ShortcutStudio",
+  "author": "@ios151",
+  "icon": "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png",
+  "repo": "https://github.com/Yu9191/shortcutstudio-rewrite",
+  "apps": [
+    {
+      "id": "SHORTCUTSTUDIO_REQUEST",
+      "name": "请求参数",
+      "keys": [
+        "ShortcutStudio.thinkingMode",
+        "ShortcutStudio.searchWebMode",
+        "ShortcutStudio.deviceIdReuseLimit",
+        "ShortcutStudio.signRewrite"
+      ],
+      "settings": [
+        {
+          "id": "ShortcutStudio.thinkingMode",
+          "name": "思考模式",
+          "val": "auto",
+          "type": "selects",
+          "items": [
+            { "key": "auto", "label": "auto (默认)" },
+            { "key": "on", "label": "on" },
+            { "key": "off", "label": "off" }
+          ],
+          "desc": "generate 请求的思考模式"
+        },
+        {
+          "id": "ShortcutStudio.searchWebMode",
+          "name": "搜索模式",
+          "val": "on",
+          "type": "selects",
+          "items": [
+            { "key": "on", "label": "on (默认)" },
+            { "key": "auto", "label": "auto" },
+            { "key": "off", "label": "off" }
+          ],
+          "desc": "generate 请求的联网搜索模式"
+        },
+        {
+          "id": "ShortcutStudio.deviceIdReuseLimit",
+          "name": "设备ID复用次数",
+          "val": "2",
+          "type": "text",
+          "desc": "默认 2 次后切换设备安装 ID"
+        },
+        {
+          "id": "ShortcutStudio.signRewrite",
+          "name": "sign接口替换",
+          "val": "off",
+          "type": "selects",
+          "items": [
+            { "key": "off", "label": "off (不替换/sign设备ID)" },
+            { "key": "on", "label": "on (对/sign也替换设备ID)" }
+          ],
+          "desc": "off=减少对签名/隐私敏感请求影响; on=对/sign也替换设备ID"
+        }
+      ],
+      "author": "@ios151",
+      "repo": "https://github.com/Yu9191/shortcutstudio-rewrite",
+      "icons": [
+        "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png",
+        "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png"
+      ]
+    },
+    {
+      "id": "SHORTCUTSTUDIO_LIMITS",
+      "name": "额度 Mock",
+      "keys": [
+        "ShortcutStudio.limitsMock",
+        "ShortcutStudio.messagesLimit",
+        "ShortcutStudio.downloadsLimit",
+        "ShortcutStudio.searchesLimit",
+        "ShortcutStudio.uploadsLimit",
+        "ShortcutStudio.marketplaceDownloadsLimit",
+        "ShortcutStudio.chatInputCharsLimit"
+      ],
+      "settings": [
+        {
+          "id": "ShortcutStudio.limitsMock",
+          "name": "limits响应mock",
+          "val": "off",
+          "type": "selects",
+          "items": [
+            { "key": "off", "label": "off (默认，不修改)" },
+            { "key": "on", "label": "on (仅改本机UI显示额度)" }
+          ],
+          "desc": "off=不修改/users/me/limits响应; on=仅修改本机App看到的UI显示额度，不改变服务端真实额度"
+        },
+        {
+          "id": "ShortcutStudio.messagesLimit",
+          "name": "消息额度",
+          "val": "999",
+          "type": "text",
+          "desc": "limits响应mock=on时生效"
+        },
+        {
+          "id": "ShortcutStudio.downloadsLimit",
+          "name": "下载额度",
+          "val": "999",
+          "type": "text",
+          "desc": "limits响应mock=on时生效"
+        },
+        {
+          "id": "ShortcutStudio.searchesLimit",
+          "name": "搜索额度",
+          "val": "999",
+          "type": "text",
+          "desc": "limits响应mock=on时生效"
+        },
+        {
+          "id": "ShortcutStudio.uploadsLimit",
+          "name": "上传额度",
+          "val": "999",
+          "type": "text",
+          "desc": "limits响应mock=on时生效"
+        },
+        {
+          "id": "ShortcutStudio.marketplaceDownloadsLimit",
+          "name": "市场下载额度",
+          "val": "999",
+          "type": "text",
+          "desc": "limits响应mock=on时生效"
+        },
+        {
+          "id": "ShortcutStudio.chatInputCharsLimit",
+          "name": "输入字数",
+          "val": "20000",
+          "type": "text",
+          "desc": "limits响应mock=on时生效"
+        }
+      ],
+      "author": "@ios151",
+      "repo": "https://github.com/Yu9191/shortcutstudio-rewrite",
+      "icons": [
+        "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png",
+        "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png"
+      ]
+    },
+    {
+      "id": "SHORTCUTSTUDIO_DEBUG",
+      "name": "调试",
+      "keys": [
+        "ShortcutStudio.logLevel"
+      ],
+      "settings": [
+        {
+          "id": "ShortcutStudio.logLevel",
+          "name": "日志级别",
+          "val": "info",
+          "type": "selects",
+          "items": [
+            { "key": "off", "label": "关闭" },
+            { "key": "error", "label": "ERROR" },
+            { "key": "warn", "label": "WARN" },
+            { "key": "info", "label": "INFO (默认)" },
+            { "key": "debug", "label": "DEBUG (排错)" },
+            { "key": "all", "label": "ALL" }
+          ],
+          "desc": "排错时切到 DEBUG 可看到脚本内部日志"
+        }
+      ],
+      "author": "@ios151",
+      "repo": "https://github.com/Yu9191/shortcutstudio-rewrite",
+      "icons": [
+        "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png",
+        "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/resources/icon.png"
+      ]
+    }
+  ]
+}
